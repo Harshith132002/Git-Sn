@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Premium Open Lawn Wedding Venue - Elegant banquet hall for weddings, corporate events, and special celebrations">
+    <meta name="keywords" content="wedding venue, banquet hall, open lawn, event space, wedding planning, reception venue">
+    <meta name="author" content="Serene Gardens Venue">
+
+    <!-- Open Graph Meta Tags for Social Media -->
+    <meta property="og:title" content="SN Greens - Premium Open Lawn Wedding Venue">
+    <meta property="og:description" content="Create unforgettable memories at our elegant open lawn venue with modern amenities and beautiful landscaping">
+    <meta property="og:image" content="./assets/images/venue-hero.jpg">
+    <meta property="og:url" content="https://yourvenuewebsite.com">
+    <meta property="og:type" content="website">
+
+    <title>SN Greens - Premium Open Lawn Venue | Bengaluru</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./assets/css/main.css">
+
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "EventVenue",
+        "name": "SN Greens",
+        "description": "Premium open lawn wedding venue with modern amenities",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "123 Garden Avenue",
+            "addressLocality": "Bengaluru",
+            "addressRegion": "Karnataka",
+            "postalCode": "560001",
+            "addressCountry": "IN"
+        },
+        "telephone": "+91 8618019454",
+        "email": "mail.id",
+        "url": "https://yourvenuewebsite.com",
+        "image": "./assets/images/venue-hero.jpg",
+        "priceRange": "₹₹₹"
+    }
+    </script>
+</head>
+<body>
+    <!-- Floating WhatsApp Button -->
+    <div id="whatsapp-float" class="whatsapp-float">
+        <a href="https://wa.me/919880980849?text=Hi, I'm interested in booking your venue" target="_blank" class="whatsapp-btn">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <!-- Scroll to Top Button -->
+    <div class="scroll-to-top" id="scrollToTop">
+        <i class="fas fa-chevron-up"></i>
+    </div>
+
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+        <div class="preloader-content">
+            <div class="logo-animation">
+                <i class="fas fa-leaf"></i>
+                <span>SN Greens</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNavbar">
+        <div class="container">
+            <a class="navbar-brand" href="#home">
+                <i class="fas fa-leaf brand-icon"></i>
+                <span class="brand-text">SN Greens</span>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#gallery">Gallery</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#services">Services</a>
+                    </li>
+                  
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                    <li class="nav-item ms-lg-3">
+                       
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Container -->
+    <main>
+        <!-- Hero Section -->
+        <section id="home"></section>
+
+    
+        <!-- Gallery Section -->
+        <section id="gallery"></section>
+
+        <!-- Services Section -->
+        <section id="services"></section>
+
+        <section id="contact"></section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer id="footer"></footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- AOS Animation JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- Custom JavaScript -->
+    <script src="./assets/js/main.js"></script>
+
+    <!-- Load Section Components -->
+    <script>
+        class SectionLoader {
+            constructor() {
+                this.sections = [
+                    { id: 'home', path: './sections/hero.html', type: 'hero' },
+                    { id: 'gallery', path: './sections/gallery.html', type: 'gallery' },
+                    { id: 'services', path: './sections/services.html', type: 'content' },
+                    { id: 'contact', path: './sections/contact.html', type: 'content' },
+                    { id: 'footer', path: './sections/footer.html', type: 'footer' }
+                ];
+                this.loadedComponents = new Set();
+                this.init();
+            }
+
+            init() {
+                this.showPreloader();
+                this.loadAllSections()
+                    .then(() => this.initializeComponents())
+                    .catch(this.handleError.bind(this));
+            }
+
+            showPreloader() {
+                const preloader = document.getElementById('preloader');
+                preloader.style.display = 'flex';
+                preloader.style.opacity = '1';
+            }
+
+            hidePreloader() {
+                const preloader = document.getElementById('preloader');
+                preloader.style.opacity = '0';
+                setTimeout(() => {
+                    preloader.style.display = 'none';
+                }, 500);
+            }
+
+            async loadAllSections() {
+                try {
+                    // Load hero section first
+                    const heroSection = this.sections.find(s => s.type === 'hero');
+                    if (heroSection) {
+                        await this.loadSection(heroSection);
+                    }
+
+                    // Load other sections
+                    const otherSections = this.sections.filter(s => s.type !== 'hero');
+                    await Promise.all(otherSections.map(section => this.loadSection(section)));
+                } catch (error) {
+                    throw new Error('Failed to load sections');
+                }
+            }
+
+            loadSection(section) {
+                return new Promise((resolve, reject) => {
+                    fetch(section.path)
+                        .then(response => {
+                            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                            return response.text();
+                        })
+                        .then(html => {
+                            const element = document.getElementById(section.id);
+                            if (element) {
+                                element.innerHTML = html;
+                                this.loadedComponents.add(section.id);
+                                this.initializeSectionFeatures(section);
+                                resolve();
+                            } else {
+                                reject(new Error(`Element with id "${section.id}" not found`));
+                            }
+                        })
+                        .catch(reject);
+                });
+            }
+
+            initializeSectionFeatures(section) {
+                switch (section.type) {
+                    case 'hero':
+                        this.initializeHeroSection();
+                        break;
+                    case 'gallery':
+                        this.initializeGallerySection();
+                        break;
+                }
+            }
+
+            initializeHeroSection() {
+                const carousel = document.getElementById('heroCarousel');
+                if (carousel && typeof bootstrap !== 'undefined') {
+                    new bootstrap.Carousel(carousel, {
+                        interval: 5000,
+                        ride: 'carousel',
+                        touch: true
+                    });
+                }
+            }
+
+            initializeGallerySection() {
+                if (typeof initializeGallery === 'function') {
+                    setTimeout(() => {
+                        initializeGallery();
+                    }, 100); // Small delay to ensure DOM is ready
+                }
+            }
+
+            initializeComponents() {
+                // Initialize AOS animations
+                if (typeof AOS !== 'undefined') {
+                    AOS.init({
+                        duration: 800,
+                        offset: 100,
+                        once: true,
+                        mirror: false,
+                        disable: 'mobile'
+                    });
+                }
+
+                // Initialize smooth scroll
+                this.initializeSmoothScroll();
+
+                // Initialize navbar behavior
+                this.initializeNavbar();
+
+                // Handle scroll to section if URL has hash
+                if (window.location.hash) {
+                    setTimeout(() => {
+                        const element = document.querySelector(window.location.hash);
+                        if (element) {
+                            element.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    }, 1000);
+                }
+
+                // Hide preloader
+                this.hidePreloader();
+            }
+
+            initializeSmoothScroll() {
+                document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                    anchor.addEventListener('click', e => {
+                        e.preventDefault();
+                        const target = document.querySelector(anchor.getAttribute('href'));
+                        if (target) {
+                            target.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+                    });
+                });
+            }
+
+            initializeNavbar() {
+                const navbar = document.getElementById('mainNavbar');
+                if (navbar) {
+                    window.addEventListener('scroll', () => {
+                        if (window.scrollY > 100) {
+                            navbar.classList.add('scrolled');
+                        } else {
+                            navbar.classList.remove('scrolled');
+                        }
+                    });
+                }
+            }
+
+            handleError(error) {
+                console.error('Section loading error:', error);
+                const preloader = document.getElementById('preloader');
+                preloader.innerHTML = `
+                    <div class="alert alert-danger">
+                        <h4 class="alert-heading">Loading Error</h4>
+                        <p>We encountered an error while loading the page. Please try:</p>
+                        <ul>
+                            <li>Refreshing the page</li>
+                            <li>Clearing your browser cache</li>
+                            <li>Checking your internet connection</li>
+                        </ul>
+                        <button class="btn btn-primary mt-3" onclick="window.location.reload()">
+                            <i class="fas fa-redo-alt me-2"></i>Reload Page
+                        </button>
+                    </div>
+                `;
+            }
+        }
+
+        // Initialize when DOM is ready
+        document.addEventListener('DOMContentLoaded', () => {
+            new SectionLoader();
+        });
+    </script>
+
+    <style>
+    /* Navbar Styles */
+    .navbar {
+        padding: 1rem 0;
+        transition: all 0.3s ease;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+    }
+
+    .navbar.scrolled {
+        padding: 0.75rem 0;
+        background: rgba(255, 255, 255, 0.98);
+    }
+
+    .navbar-brand {
+        font-family: 'Playfair Display', serif;
+        font-weight: 600;
+        font-size: 1.5rem;
+        color: var(--primary-color) !important;
+    }
+
+    .brand-icon {
+        color: var(--secondary-color);
+        margin-right: 0.5rem;
+        transition: transform 0.3s ease;
+    }
+
+    .navbar-brand:hover .brand-icon {
+        transform: rotate(-15deg);
+    }
+
+    .nav-link {
+        font-weight: 500;
+        padding: 0.5rem 1rem !important;
+        color: var(--primary-color) !important;
+        position: relative;
+        transition: color 0.3s ease;
+    }
+
+    .nav-link::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: 0;
+        left: 50%;
+        background: var(--secondary-color);
+        transition: all 0.3s ease;
+        transform: translateX(-50%);
+    }
+
+    .nav-link:hover::after,
+    .nav-link.active::after {
+        width: 80%;
+    }
+
+    .nav-cta {
+        padding: 0.6rem 1.5rem !important;
+        border-radius: var(--radius-md);
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: 0.9rem;
+        letter-spacing: 0.5px;
+        transition: all 0.3s ease !important;
+        background: linear-gradient(135deg, var(--secondary-color), var(--secondary-light)) !important;
+        border: none !important;
+    }
+
+    .nav-cta:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+    }
+
+    .navbar-toggler {
+        border: none;
+        padding: 0.5rem;
+    }
+
+    .navbar-toggler:focus {
+        box-shadow: none;
+    }
+
+    .navbar-toggler i {
+        color: var(--primary-color);
+        font-size: 1.5rem;
+    }
+
+    @media (max-width: 991px) {
+        .navbar-collapse {
+            background: white;
+            padding: 1rem;
+            border-radius: var(--radius-lg);
+            margin-top: 1rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-link::after {
+            display: none;
+        }
+        
+        .nav-item {
+            margin: 0.5rem 0;
+        }
+        
+        .nav-cta {
+            margin-top: 1rem;
+            display: block;
+            text-align: center;
+        }
+    }
+
+    .preloader {
+        transition: opacity 0.5s ease-out;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+    }
+
+    .logo-animation {
+        animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.1); }
+        100% { transform: scale(1); }
+    }
+
+    .alert {
+        max-width: 500px;
+        margin: 20px;
+    }
+    </style>
+</body>
+</html>
