@@ -1,0 +1,238 @@
+<!-- SERVICES SECTION -->
+<section class="services-section" id="services">
+    <div class="container">
+        <!-- Section Header -->
+        <div class="section-title" data-aos="fade-up">
+            <span class="text-accent">Our Services</span>
+            <h2>What We Offer</h2>
+            <p class="section-subtitle">
+                Comprehensive event services tailored to make your special day perfect
+            </p>
+        </div>
+
+        <!-- Services Grid -->
+        <div class="row">
+            <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-glass-cheers"></i>
+                    </div>
+                    <h3>Wedding Ceremonies</h3>
+                    <p>Host your dream wedding in our elegant open lawn setting with customizable arrangements.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Customizable mandap setup</li>
+                        <li><i class="fas fa-check"></i> Seating for 800+ guests</li>
+                        <li><i class="fas fa-check"></i> Professional lighting</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h3>Catering Services</h3>
+                    <p>Exquisite dining options with multiple cuisine choices and professional service.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Multiple cuisine options</li>
+                        <li><i class="fas fa-check"></i> Professional service staff</li>
+                        <li><i class="fas fa-check"></i> Custom menu planning</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <h3>Photography</h3>
+                    <p>Professional photography and videography services to capture your precious moments.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Professional photographers</li>
+                        <li><i class="fas fa-check"></i> Same-day editing</li>
+                        <li><i class="fas fa-check"></i> Drone coverage</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="400">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <h3>Entertainment</h3>
+                    <p>Complete entertainment solutions including sound system, DJ, and live performances.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Professional sound system</li>
+                        <li><i class="fas fa-check"></i> DJ services</li>
+                        <li><i class="fas fa-check"></i> Live band options</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="500">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <h3> Parking</h3>
+                    <p>Convenient parking space for all your guests</p>
+                    <ul class="service-features">
+                      
+                        <li><i class="fas fa-check"></i> Secure parking area</li>
+                        <li><i class="fas fa-check"></i> Quick retrieval</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="600">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3>Decor & Design</h3>
+                    <p>Custom decoration services to match your theme and preferences perfectly.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Theme-based decor</li>
+                        <li><i class="fas fa-check"></i> Floral arrangements</li>
+                        <li><i class="fas fa-check"></i> Lighting design</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Call to Action -->
+        <div class="text-center mt-5" data-aos="fade-up" data-aos-delay="700">
+            <a  href="https://wa.me/919880980849?text=Hi, I'm interested in booking your venue" class="btn btn-primary">
+                <i class="fas fa-calendar-check me-2"></i>Book Our Services
+            </a>
+        </div>
+    </div>
+</section>
+
+<style>
+/* SERVICES SECTION STYLES */
+.services-section {
+    background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.services-section .section-subtitle {
+    color: var(--text-color);
+    opacity: 0.8;
+    font-weight: 500;
+}
+
+.service-card {
+    background: white;
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    height: 100%;
+    transition: var(--transition-smooth);
+    box-shadow: var(--shadow-md);
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    opacity: 0;
+    z-index: -1;
+    transition: var(--transition-smooth);
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-xl);
+}
+
+.service-card:hover::before {
+    opacity: 1;
+}
+
+.service-card:hover * {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.service-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, var(--secondary-color), var(--secondary-dark));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+    color: white;
+    transition: var(--transition-smooth);
+}
+
+.service-card:hover .service-icon {
+    background: rgba(255, 215, 13, 0.9);
+    color: var(--secondary-color);
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+.service-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+    transition: var(--transition-smooth);
+}
+
+.service-card p {
+    color: var(--text-light);
+    margin-bottom: 1.5rem;
+    transition: var(--transition-smooth);
+}
+
+.service-features {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.service-features li {
+    margin-bottom: 0.5rem;
+    color: var(--text-light);
+    transition: var(--transition-smooth);
+}
+
+.service-features li i {
+    color: var(--secondary-color);
+    margin-right: 0.5rem;
+    transition: var(--transition-smooth);
+}
+
+.service-card:hover .service-features li i {
+    color: var(--secondary-color);
+}
+
+@media (max-width: 768px) {
+    .service-card {
+        padding: 1.5rem;
+    }
+
+    .service-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+    }
+
+    .service-card h3 {
+        font-size: 1.3rem;
+    }
+}
+</style>

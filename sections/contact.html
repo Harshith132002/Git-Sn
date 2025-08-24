@@ -1,0 +1,384 @@
+<!-- Contact Form Section -->
+<section class="contact-form-section py-5" id="contact">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-7 text-center mb-5">
+                <h2 class="section-title" data-aos="fade-up">Get in Touch</h2>
+                <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+                    Ready to create your perfect event? Fill out the form below and we'll contact you shortly.
+                </p>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="contact-form-wrapper" data-aos="fade-up" data-aos-delay="200">
+                    <form class="contact-form" id="contactForm" onsubmit="return false;">
+                        <div class="row g-4">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="name" class="form-label">Full Name *</label>
+                                    <input type="text" class="form-control custom-input" id="name" name="name" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="email" class="form-label">Email Address *</label>
+                                    <input type="email" class="form-control custom-input" id="email" name="email" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="phone" class="form-label">Contact Number *</label>
+                                    <input type="tel" class="form-control custom-input" id="phone" name="phone" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="eventType" class="form-label">Type of Event *</label>
+                                    <select class="form-select custom-input" id="eventType" name="eventType" required>
+                                        <option value="" selected disabled>Choose your event type</option>
+                                        <option value="wedding">Wedding Ceremony</option>
+                                        <option value="corporate">Corporate Event</option>
+                                        <option value="birthday">Birthday Celebration</option>
+                                        <option value="engagement">Engagement Party</option>
+                                        <option value="other">Other Celebration</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="message" class="form-label">Your Message *</label>
+                                    <textarea class="form-control custom-input" id="message" name="message" rows="4" required placeholder="Tell us about your event requirements..."></textarea>
+                                </div>
+                            </div>
+                            <div class="col-12 text-center mt-4">
+                                <button type="button" class="btn btn-primary btn-submit" id="submitBtn">
+                                    Send Message <i class="fas fa-paper-plane ms-2"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    
+                    <!-- Status Messages -->
+                    <div id="statusMessage" class="mt-4" style="display: none;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+/* Contact Form Section Styles */
+.contact-form-section {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    position: relative;
+    padding: 80px 0;
+    color: #fff;
+}
+
+.contact-form-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><circle cx="2" cy="2" r="1" fill="rgba(255,255,255,0.05)"/></svg>');
+    opacity: 0.15;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 1rem;
+    position: relative;
+    padding-bottom: 1rem;
+    font-family: 'Playfair Display', serif;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(to right, var(--secondary-color), var(--secondary-light));
+    border-radius: 3px;
+}
+
+.section-subtitle {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.8);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.contact-form-wrapper {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 35px;
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-label {
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+}
+
+.custom-input {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    border-radius: var(--radius-md);
+    padding: 12px 15px;
+    height: auto;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.custom-input:focus {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 0.25rem rgba(212, 175, 55, 0.25);
+    color: #fff;
+}
+
+.custom-input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+textarea.custom-input {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.btn-submit {
+    background: linear-gradient(135deg, var(--secondary-color), var(--secondary-light));
+    border: none;
+    padding: 12px 35px;
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+}
+
+.btn-submit:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+}
+
+.btn-submit:disabled {
+    opacity: 0.7;
+    transform: none;
+    cursor: not-allowed;
+}
+
+.alert {
+    padding: 15px;
+    border-radius: var(--radius-md);
+    margin-top: 15px;
+    border: none;
+}
+
+.alert-success {
+    background-color: rgba(40, 167, 69, 0.15);
+    border: 1px solid rgba(40, 167, 69, 0.3);
+    color: #28a745;
+}
+
+.alert-danger {
+    background-color: rgba(220, 53, 69, 0.15);
+    border: 1px solid rgba(220, 53, 69, 0.3);
+    color: #dc3545;
+}
+
+.alert-info {
+    background-color: rgba(23, 162, 184, 0.15);
+    border: 1px solid rgba(23, 162, 184, 0.3);
+    color: #17a2b8;
+}
+
+@media (max-width: 991px) {
+    .section-title {
+        font-size: 2rem;
+    }
+    .contact-form-wrapper {
+        padding: 25px;
+    }
+}
+
+@media (max-width: 768px) {
+    .contact-form-section {
+        padding: 60px 0;
+    }
+    .section-title {
+        font-size: 1.8rem;
+    }
+    .section-subtitle {
+        font-size: 1rem;
+    }
+    .contact-form-wrapper {
+        padding: 20px;
+    }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM Content Loaded - Initializing form...');
+    
+    const formContainer = document.getElementById('contactForm');
+    const statusDiv = document.getElementById('statusMessage');
+    const submitBtn = document.getElementById('submitBtn');
+    
+    if (!formContainer || !statusDiv || !submitBtn) {
+        console.error('Form elements not found:', {
+            formContainer: !!formContainer,
+            statusDiv: !!statusDiv,
+            submitBtn: !!submitBtn
+        });
+        return;
+    }
+    
+    console.log('Form elements found successfully');
+    
+    // 🔥 REPLACE THIS WITH YOUR ACTUAL GOOGLE APPS SCRIPT URL
+    const WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbym0o_LUvsuM41G4pgjS_EsD2FoKYjlQkwvWunKJf5HH6B3P2L7UWckC7IiCWOjBQ1d_w/exec';
+    
+    function showMessage(message, type = 'info') {
+        statusDiv.innerHTML = `
+            <div class="alert alert-${type}">
+                <i class="fas ${type === 'success' ? 'fa-check-circle' : type === 'danger' ? 'fa-exclamation-circle' : 'fa-info-circle'} me-2"></i>
+                ${message}
+            </div>
+        `;
+        statusDiv.style.display = 'block';
+        statusDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+    
+    function validateForm() {
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const phone = document.getElementById('phone').value.trim();
+        const eventType = document.getElementById('eventType').value;
+        const message = document.getElementById('message').value.trim();
+        
+        if (!name || !email || !phone || !eventType || !message) {
+            showMessage('Please fill in all required fields.', 'danger');
+            return false;
+        }
+        
+        // Basic email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            showMessage('Please enter a valid email address.', 'danger');
+            return false;
+        }
+        
+        return true;
+    }
+    
+    function clearForm() {
+        document.getElementById('name').value = '';
+        document.getElementById('email').value = '';
+        document.getElementById('phone').value = '';
+        document.getElementById('eventType').value = '';
+        document.getElementById('message').value = '';
+    }
+    
+    submitBtn.addEventListener('click', async function() {
+        console.log('Submit button clicked');
+        
+        // Validate form
+        if (!validateForm()) {
+            console.log('Form validation failed');
+            return;
+        }
+        
+        console.log('Form validation passed, preparing to send data...');
+        const originalHTML = submitBtn.innerHTML;
+        
+        // Update button state
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+        submitBtn.disabled = true;
+        
+        // Prepare form data
+        const formData = new URLSearchParams();
+        formData.append('name', document.getElementById('name').value.trim());
+        formData.append('email', document.getElementById('email').value.trim());
+        formData.append('phone', document.getElementById('phone').value.trim());
+        formData.append('eventType', document.getElementById('eventType').value);
+        formData.append('message', document.getElementById('message').value.trim());
+        
+        try {
+            console.log('Sending request to:', WEBAPP_URL);
+            console.log('Form data:', Object.fromEntries(formData));
+            
+            const response = await fetch(WEBAPP_URL, {
+                method: 'POST',
+                mode: 'cors',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: formData
+            });
+            
+            console.log('Response received:', response.status);
+            
+            let responseData;
+            const responseText = await response.text();
+            
+            try {
+                responseData = JSON.parse(responseText);
+            } catch (e) {
+                console.log('Raw response:', responseText);
+                responseData = { status: 'error', message: responseText };
+            }
+            
+            if (responseData.status === 'success') {
+                showMessage(`
+                    <strong>Thank you!</strong> Your message has been sent successfully. 
+                    <br><small>We'll get back to you within 24 hours.</small>
+                `, 'success');
+                clearForm();
+            } else {
+                throw new Error(responseData.message || 'Unknown error occurred');
+            }
+            
+        } catch (error) {
+            console.error('Submission error:', error);
+            showMessage(`
+                <strong>Unable to send message.</strong> ${error.message}
+                <br><small>Please try again or contact us directly.</small>
+            `, 'danger');
+        } finally {
+            // Reset button after 2 seconds
+            setTimeout(() => {
+                submitBtn.innerHTML = originalHTML;
+                submitBtn.disabled = false;
+            }, 2000);
+        }
+    });
+    
+    // Add Enter key support
+    formContainer.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter' && e.target.tagName !== 'TEXTAREA') {
+            e.preventDefault();
+            submitBtn.click();
+        }
+    });
+});
+</script>

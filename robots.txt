@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+Disallow: /cgi-bin/
+Disallow: /tmp/
+Disallow: /private/
+
+# Allow search engines to find assets
+Allow: /assets/css/
+Allow: /assets/js/
+Allow: /assets/images/
+Allow: /sections/
+
+# Sitemap location
+Sitemap: https://sngreens.com/sitemap.xml
