@@ -317,6 +317,7 @@ section {
     position: relative;
     display: inline-block;
     margin-bottom: 1rem;
+    color: var(--primary-color); /* Add this line */
 }
 
 .section-title h2::after {
@@ -333,9 +334,21 @@ section {
 
 .section-subtitle {
     font-size: 1.2rem;
-    color: var(--text-lighter);
+    color: var(--text-light);
     max-width: 600px;
     margin: 0 auto;
+    opacity: 0.9;
+}
+
+/* Add this for dark background sections */
+.feature-section .section-title h2,
+.dark-section .section-title h2 {
+    color: #fff;
+}
+
+.feature-section .section-subtitle,
+.dark-section .section-subtitle {
+    color: rgba(255, 255, 255, 0.8);
 }
 
 

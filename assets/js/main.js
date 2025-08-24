@@ -170,18 +170,144 @@ function initializeModals() {
 
 // ===== FORM HANDLING =====
 function initializeForms() {
-    const contactForm = document.getElementById('contactForm');
-    const bookingForm = document.getElementById('bookingForm');
+    // We'll use a MutationObserver to watch for the contact form being added to the DOM
+    const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+            if (mutation.addedNodes && mutation.addedNodes.length > 0) {
+                const contactForm = document.getElementById('contactForm');
+                const submitBtn = document.getElementById('submitBtn');
+                
+                if (contactForm && submitBtn && !contactForm.dataset.initialized) {
+                    console.log('Initializing contact form...');
+                    initializeContactForm(contactForm, submitBtn);
+                    contactForm.dataset.initialized = 'true';
+                }
+            }
+        });
+    });
 
-    // Contact form submission
-    if (contactForm) {
-        contactForm.addEventListener('submit', handleContactForm);
+    // Start observing the document with the configured parameters
+    observer.observe(document.body, { childList: true, subtree: true });
+}
+
+function initializeContactForm(formContainer, submitBtn) {
+    const statusDiv = document.getElementById('statusMessage');
+    const WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbym0o_LUvsuM41G4pgjS_EsD2FoKYjlQkwvWunKJf5HH6B3P2L7UWckC7IiCWOjBQ1d_w/exec';
+
+    function showMessage(message, type = 'info') {
+        statusDiv.innerHTML = `
+            <div class="alert alert-${type}">
+                <i class="fas ${type === 'success' ? 'fa-check-circle' : type === 'danger' ? 'fa-exclamation-circle' : 'fa-info-circle'} me-2"></i>
+                ${message}
+            </div>
+        `;
+        statusDiv.style.display = 'block';
+        statusDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
 
-    // Booking form submission
-    if (bookingForm) {
-        bookingForm.addEventListener('submit', handleBookingForm);
+    function validateForm() {
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const phone = document.getElementById('phone').value.trim();
+        const eventType = document.getElementById('eventType').value;
+        const message = document.getElementById('message').value.trim();
+
+        if (!name || !email || !phone || !eventType || !message) {
+            showMessage('Please fill in all required fields.', 'danger');
+            return false;
+        }
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            showMessage('Please enter a valid email address.', 'danger');
+            return false;
+        }
+
+        return true;
     }
+
+    function clearForm() {
+        document.getElementById('name').value = '';
+        document.getElementById('email').value = '';
+        document.getElementById('phone').value = '';
+        document.getElementById('eventType').value = '';
+        document.getElementById('message').value = '';
+    }
+
+    // Add submit event listener
+    submitBtn.addEventListener('click', async function(e) {
+        console.log('Submit button clicked');
+        
+        if (!validateForm()) {
+            return;
+        }
+
+        const originalHTML = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+        submitBtn.disabled = true;
+
+        const formData = new URLSearchParams();
+        formData.append('name', document.getElementById('name').value.trim());
+        formData.append('email', document.getElementById('email').value.trim());
+        formData.append('phone', document.getElementById('phone').value.trim());
+        formData.append('eventType', document.getElementById('eventType').value);
+        formData.append('message', document.getElementById('message').value.trim());
+
+        try {
+            console.log('Sending request to:', WEBAPP_URL);
+            const response = await fetch(WEBAPP_URL, {
+                method: 'POST',
+                mode: 'no-cors', // Change to no-cors mode
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: formData
+            });
+
+            // When using no-cors, we won't get the response content
+            console.log('Form submitted successfully in no-cors mode');
+            
+            // Optional: Make a GET request to check submission status
+            try {
+                const checkResponse = await fetch(WEBAPP_URL + '?check=true', {
+                    method: 'GET',
+                    mode: 'cors'
+                });
+                const checkResult = await checkResponse.text();
+                console.log('Submission check result:', checkResult);
+            } catch (checkError) {
+                console.log('Submission check error:', checkError);
+            }
+
+            showMessage(`
+                <strong>Thank you!</strong> Your message has been sent successfully. 
+                <br><small>We'll get back to you within 24 hours.</small>
+            `, 'success');
+            clearForm();
+
+        } catch (error) {
+            console.error('Submission error:', error);
+            showMessage(`
+                <strong>Unable to send message.</strong> ${error.message}
+                <br><small>Please try again or contact us directly.</small>
+            `, 'danger');
+        } finally {
+            setTimeout(() => {
+                submitBtn.innerHTML = originalHTML;
+                submitBtn.disabled = false;
+            }, 2000);
+        }
+    });
+
+    // Add Enter key support
+    formContainer.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter' && e.target.tagName !== 'TEXTAREA') {
+            e.preventDefault();
+            submitBtn.click();
+        }
+    });
+
+    console.log('Contact form initialized successfully');
 }
 
 function handleContactForm(e) {

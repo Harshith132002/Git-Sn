@@ -12,7 +12,7 @@
         <div class="row justify-content-center">
             <div class="col-lg-8">
                 <div class="contact-form-wrapper" data-aos="fade-up" data-aos-delay="200">
-                    <div class="contact-form" id="contactForm">
+                    <form class="contact-form" id="contactForm" onsubmit="return false;">
                         <div class="row g-4">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -57,7 +57,7 @@
                                 </button>
                             </div>
                         </div>
-                    </div>
+                    </form>
                     
                     <!-- Status Messages -->
                     <div id="statusMessage" class="mt-4" style="display: none;"></div>
@@ -238,12 +238,25 @@ textarea.custom-input {
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM Content Loaded - Initializing form...');
+    
     const formContainer = document.getElementById('contactForm');
     const statusDiv = document.getElementById('statusMessage');
     const submitBtn = document.getElementById('submitBtn');
     
+    if (!formContainer || !statusDiv || !submitBtn) {
+        console.error('Form elements not found:', {
+            formContainer: !!formContainer,
+            statusDiv: !!statusDiv,
+            submitBtn: !!submitBtn
+        });
+        return;
+    }
+    
+    console.log('Form elements found successfully');
+    
     // 🔥 REPLACE THIS WITH YOUR ACTUAL GOOGLE APPS SCRIPT URL
-    const WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbzVSViC5hua3bM_TtVmm6myFzFRF-D3R9iqNOpEg1-hPuj-1sEMUhkyP98YhHTmr_Xp/exec';
+    const WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbym0o_LUvsuM41G4pgjS_EsD2FoKYjlQkwvWunKJf5HH6B3P2L7UWckC7IiCWOjBQ1d_w/exec';
     
     function showMessage(message, type = 'info') {
         statusDiv.innerHTML = `
@@ -287,11 +300,15 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     submitBtn.addEventListener('click', async function() {
+        console.log('Submit button clicked');
+        
         // Validate form
         if (!validateForm()) {
+            console.log('Form validation failed');
             return;
         }
         
+        console.log('Form validation passed, preparing to send data...');
         const originalHTML = submitBtn.innerHTML;
         
         // Update button state
@@ -307,53 +324,46 @@ document.addEventListener('DOMContentLoaded', function() {
         formData.append('message', document.getElementById('message').value.trim());
         
         try {
+            console.log('Sending request to:', WEBAPP_URL);
+            console.log('Form data:', Object.fromEntries(formData));
+            
             const response = await fetch(WEBAPP_URL, {
                 method: 'POST',
+                mode: 'cors',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
                 },
                 body: formData
             });
             
+            console.log('Response received:', response.status);
+            
+            let responseData;
             const responseText = await response.text();
             
-            if (response.ok && responseText.toLowerCase().includes('success')) {
+            try {
+                responseData = JSON.parse(responseText);
+            } catch (e) {
+                console.log('Raw response:', responseText);
+                responseData = { status: 'error', message: responseText };
+            }
+            
+            if (responseData.status === 'success') {
                 showMessage(`
                     <strong>Thank you!</strong> Your message has been sent successfully. 
                     <br><small>We'll get back to you within 24 hours.</small>
                 `, 'success');
                 clearForm();
             } else {
-                throw new Error(`Server responded with: ${responseText}`);
+                throw new Error(responseData.message || 'Unknown error occurred');
             }
             
         } catch (error) {
             console.error('Submission error:', error);
-            
-            // Try fallback method
-            try {
-                await fetch("https://script.google.com/macros/s/AKfycbzVSViC5hua3bM_TtVmm6myFzFRF-D3R9iqNOpEg1-hPuj-1sEMUhkyP98YhHTmr_Xp/exec", {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                    },
-                    body: formData,
-                    mode: 'no-cors'
-                });
-                
-                showMessage(`
-                    <strong>Message sent!</strong> Your inquiry has been submitted.
-                    <br><small>We'll contact you soon to discuss your event requirements.</small>
-                `, 'success');
-                clearForm();
-                
-            } catch (finalError) {
-                console.error('All methods failed:', finalError);
-                showMessage(`
-                    <strong>Unable to send message.</strong> Please try again or contact us directly.
-                    <br><small>Phone: +91 8618019454 | Email: your-email@example.com</small>
-                `, 'danger');
-            }
+            showMessage(`
+                <strong>Unable to send message.</strong> ${error.message}
+                <br><small>Please try again or contact us directly.</small>
+            `, 'danger');
         } finally {
             // Reset button after 2 seconds
             setTimeout(() => {

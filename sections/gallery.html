@@ -20,6 +20,7 @@
                                             <h4>Modern Architecture</h4>
                                             <p>Contemporary venue design</p>
                                         </div>
+
                                     </div>
                                 </div>
                                 <div class="col-md-4 p-2">
@@ -161,12 +162,11 @@
                 <div class="gallery-card">
                     <img src="./assets/images/gallery/residential-complex.jpg" alt="Modern Residential Complex" class="gallery-image">
                     <div class="gallery-overlay">
-                        <div class="gallery-content">
-                            <h5>Modern Architecture</h5>
-                            <p>Contemporary residential design</p>
-                            <button class="btn btn-sm btn-secondary" onclick="openImageModal(this)">
-                                <i class="fas fa-expand-arrows-alt me-2"></i>View Full
-                            </button>
+                       
+                         <div class="gallery-content">
+                            <h5>Traditional Ceremonies</h5>
+                            <p>Sacred temple arrangements</p>
+                           
                         </div>
                     </div>
                 </div>
@@ -177,12 +177,10 @@
                 <div class="gallery-card">
                     <img src="./assets/images/gallery/landscaped-pathway.jpg" alt="Beautiful Landscaped Pathway" class="gallery-image">
                     <div class="gallery-overlay">
-                        <div class="gallery-content">
-                            <h5>Elegant Pathways</h5>
-                            <p>Beautifully lit walkways</p>
-                            <button class="btn btn-sm btn-secondary" onclick="openImageModal(this)">
-                                <i class="fas fa-expand-arrows-alt me-2"></i>View Full
-                            </button>
+                     <div class="gallery-content">
+                            <h5>Comfort First</h5>
+                            <p>Contemporary residential design</p>
+                           
                         </div>
                     </div>
                 </div>
@@ -193,12 +191,11 @@
                 <div class="gallery-card">
                     <img src="./assets/images/gallery/temple-setup.jpg" alt="Traditional Temple Setup" class="gallery-image">
                     <div class="gallery-overlay">
+                        
                         <div class="gallery-content">
-                            <h5>Traditional Ceremonies</h5>
-                            <p>Sacred temple arrangements</p>
-                            <button class="btn btn-sm btn-secondary" onclick="openImageModal(this)">
-                                <i class="fas fa-expand-arrows-alt me-2"></i>View Full
-                            </button>
+                            <h5>Elegant Pathways</h5>
+                            <p>Beautifully lit walkways</p>
+                            
                         </div>
                     </div>
                 </div>
@@ -212,9 +209,7 @@
                         <div class="gallery-content">
                             <h5>Garden Spaces</h5>
                             <p>Lush green landscapes</p>
-                            <button class="btn btn-sm btn-secondary" onclick="openImageModal(this)">
-                                <i class="fas fa-expand-arrows-alt me-2"></i>View Full
-                            </button>
+                            
                         </div>
                     </div>
                 </div>
@@ -229,9 +224,6 @@
                         <div class="gallery-content">
                             <h5>Evening Ambiance</h5>
                             <p>Magical nighttime atmosphere</p>
-                            <button class="btn btn-sm btn-secondary" onclick="openImageModal(this)">
-                                <i class="fas fa-expand-arrows-alt me-2"></i>View Full
-                            </button>
                         </div>
                     </div>
                 </div>
@@ -245,9 +237,7 @@
                         <div class="gallery-content">
                             <h5>Open Lawn Area</h5>
                             <p>Spacious event grounds</p>
-                            <button class="btn btn-sm btn-secondary" onclick="openImageModal(this)">
-                                <i class="fas fa-expand-arrows-alt me-2"></i>View Full
-                            </button>
+                            
                         </div>
                     </div>
                 </div>
@@ -439,7 +429,15 @@ function openImageModal(button) {
     background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
     position: relative;
     overflow: hidden;
-    padding: 80px 0;
+    padding: 0px 0;
+}
+
+.gallery-section .section-title h2 {
+    color: var(--primary-color);
+}
+
+.gallery-section .section-subtitle {
+    color: var(--text-lighter);
 }
 
 .feature-section {
@@ -569,13 +567,16 @@ function openImageModal(button) {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, rgba(26, 54, 93, 0.9), rgba(26, 54, 93, 0.7));
+    background: rgba(0, 0, 0, 0.5);
     display: flex;
     align-items: center;
     justify-content: center;
     opacity: 0;
-    transition: var(--transition-fast);
+    transition: var(--transition-smooth);
 }
+
+
+
 
 .gallery-card:hover .gallery-overlay {
     opacity: 1;
@@ -583,7 +584,7 @@ function openImageModal(button) {
 
 .gallery-content {
     text-align: center;
-    color: white;
+    color: #fff; /* White text for visibility */
     padding: 20px;
 }
 
@@ -591,13 +592,13 @@ function openImageModal(button) {
     font-size: 1.3rem;
     margin-bottom: 0.5rem;
     font-family: var(--font-primary);
+    color: #ffd700; /* Golden heading for pop */
 }
 
 .gallery-content p {
-    color: rgba(255, 255, 255, 0.8);
+    color: #e0e0e0; /* Light gray for contrast */
     margin-bottom: 1rem;
 }
-
 .gallery-stats {
     background: var(--primary-color);
     color: white;

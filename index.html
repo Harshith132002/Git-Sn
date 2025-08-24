@@ -207,9 +207,11 @@
                         .then(html => {
                             const element = document.getElementById(section.id);
                             if (element) {
+                                console.log(`Loading section: ${section.id}`);
                                 element.innerHTML = html;
                                 this.loadedComponents.add(section.id);
                                 this.initializeSectionFeatures(section);
+                                console.log(`Section ${section.id} loaded successfully`);
                                 resolve();
                             } else {
                                 reject(new Error(`Element with id "${section.id}" not found`));
@@ -333,6 +335,8 @@
         document.addEventListener('DOMContentLoaded', () => {
             new SectionLoader();
         });
+
+        
     </script>
 
     <style>

@@ -120,6 +120,12 @@
     overflow: hidden;
 }
 
+.services-section .section-subtitle {
+    color: var(--text-color);
+    opacity: 0.8;
+    font-weight: 500;
+}
+
 .service-card {
     background: white;
     border-radius: var(--radius-lg);
@@ -155,7 +161,7 @@
 }
 
 .service-card:hover * {
-    color: white;
+    color: rgba(255, 255, 255, 0.9);
 }
 
 .service-icon {
@@ -173,8 +179,10 @@
 }
 
 .service-card:hover .service-icon {
-    background: white;
+    background: rgba(255, 215, 13, 0.9);
     color: var(--secondary-color);
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
 }
 
 .service-card h3 {
