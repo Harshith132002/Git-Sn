@@ -1,4 +1,4 @@
-# Serene Gardens Venue - Ready to Deploy Project
+# SN Greens Venue - Ready to Deploy Project
 
 ## 📁 Project Structure
 
@@ -34,18 +34,15 @@ serene-gardens-venue/
      - `garden-landscape.jpg`
 
 2. **Update Contact Info**
-   - Edit WhatsApp number: Search for `919876543210` and replace
-   - Update email: Search for `info@serenegardens.com` and replace
+   - Edit WhatsApp number: Search for `918618019454` and replace
+   - Update email: Search for `harshith.anand15@gmail.com` and replace
    - Modify venue details in index.html
 
 3. **Test Locally**
    - Open `index.html` in your web browser
    - Check all functionality works
 
-4. **Deploy**
-   - **Netlify**: Drag entire folder to netlify.com
-   - **Vercel**: Connect to GitHub and deploy
-   - **Traditional hosting**: Upload via FTP
+
 
 ## ✅ Features Included
 
@@ -106,4 +103,4 @@ Your professional venue website is production-ready!
 
 ---
 
-**Built for Serene Gardens Venue** 🎉
+**Built for SN Greens Venue** 🎉
