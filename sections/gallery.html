@@ -271,13 +271,19 @@
     overflow: hidden;
     box-shadow: var(--shadow-lg);
     height: 450px;
+    display: flex; /* Added this */
+    align-items: stretch; /* Added this */
 }
 
 .highlight-card img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center center; /* Added this to control positioning */
     transition: transform 0.8s ease;
+    flex: 1; /* Added this to ensure it takes full space */
+    min-height: 100%; /* Added this */
+    display: block; /* Added this */
 }
 
 .highlight-card:hover img {
@@ -297,6 +303,7 @@
     color: white;
     transform: translateY(0);
     transition: transform 0.3s ease;
+    z-index: 2; /* Added this to ensure overlay stays on top */
 }
 
 .highlight-overlay h4 {
@@ -360,7 +367,7 @@
     }
 }
 
-/* Mobile Styles - Fixed */
+/* Mobile Styles - Enhanced Fix */
 @media (max-width: 768px) {
     .highlights-carousel {
         padding: 60px 0;
@@ -369,16 +376,24 @@
     .highlight-card {
         margin: 10px 0;
         height: 280px;
+        display: block; /* Reset flexbox for mobile */
     }
 
     .highlight-card img {
-        height: 100%;
-        width: 100%;
-        object-fit: cover;
+        height: 280px !important; /* Force the exact height */
+        width: 100% !important;
+        object-fit: cover !important;
+        object-position: center center;
+        min-height: 280px; /* Ensure minimum height */
+        max-height: 280px; /* Prevent exceeding height */
     }
 
     .highlight-overlay {
         padding: 20px 15px;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
     }
 
     .highlight-overlay h4 {
@@ -406,6 +421,12 @@
     .highlight-card {
         height: 250px;
         margin: 8px 0;
+    }
+    
+    .highlight-card img {
+        height: 250px !important;
+        min-height: 250px;
+        max-height: 250px;
     }
     
     .highlight-overlay {
@@ -440,6 +461,7 @@
         font-size: 1.2rem;
     }
 }
+
 
 </style>
 
