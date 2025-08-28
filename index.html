@@ -105,6 +105,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   }
   </script>
+   <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1439795717325184'); 
+    fbq('track', 'PageView');
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1439795717325184&ev=PageView&noscript=1"/>
+  </noscript>
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->
@@ -335,21 +351,34 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 // Hide preloader
                 this.hidePreloader();
             }
-
-            initializeSmoothScroll() {
-                document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                    anchor.addEventListener('click', e => {
-                        e.preventDefault();
-                        const target = document.querySelector(anchor.getAttribute('href'));
-                        if (target) {
-                            target.scrollIntoView({
-                                behavior: 'smooth',
-                                block: 'start'
-                            });
-                        }
-                    });
+initializeSmoothScroll() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', e => {
+            e.preventDefault();
+            const targetId = anchor.getAttribute('href');
+            const target = document.querySelector(targetId);
+            
+            if (target) {
+                // Calculate navbar height dynamically
+                const navbar = document.getElementById('mainNavbar');
+                const navbarHeight = navbar ? navbar.offsetHeight : 0;
+                
+                // Add extra padding for better visual spacing
+                const offset = navbarHeight + 20;
+                
+                // Get target position
+                const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
+                
+                // Smooth scroll to calculated position
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
                 });
             }
+        });
+    });
+}
+
 
             initializeNavbar() {
                 const navbar = document.getElementById('mainNavbar');
@@ -533,5 +562,34 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         margin: 20px;
     }
     </style>
+    <script>
+// Ensure Pixel base is loaded first
+document.addEventListener("DOMContentLoaded", function () {
+    
+    // --- Track Form Submission (Send Message button) ---
+    var submitBtn = document.getElementById("submitBtn");
+    if (submitBtn) {
+        submitBtn.addEventListener("click", function () {
+            fbq('track', 'Lead', {
+                content_name: 'Contact Form Submitted'
+            });
+            console.log("FB Pixel Lead event triggered - Form Submitted");
+        });
+    }
+
+    // --- Track WhatsApp Click ---
+    var whatsappBtn = document.querySelector(".whatsapp-btn");
+    if (whatsappBtn) {
+        whatsappBtn.addEventListener("click", function () {
+            fbq('track', 'Contact', {
+                content_name: 'WhatsApp Click'
+            });
+            console.log("FB Pixel Contact event triggered - WhatsApp Click");
+        });
+    }
+
+});
+</script>
+
 </body>
 </html>
